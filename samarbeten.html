@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samarbeten | Ronja Skoglund</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="navigation.css">
+    <script src="navigation.js" defer></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ink: #242424;
+            --muted: #716b64;
+            --cream: #f5efe6;
+            --paper: #faf9f7;
+            --line: #ded8d0;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+        }
+
+        .collaborations-page h1,
+        .collaborations-page h2,
+        .collaborations-page h3,
+        .collaborations-page p {
+            margin-top: 0;
+        }
+
+        .eyebrow {
+            margin-bottom: 16px;
+            font-size: 0.66rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* INTRODUKTION */
+        .collaborations-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+            gap: 9%;
+            align-items: end;
+            min-height: 220px;
+            padding: 38px 8% 36px;
+            background: var(--cream);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .collaborations-hero h1 {
+            max-width: 780px;
+            margin-bottom: 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.5rem, 4vw, 3.9rem);
+            font-weight: 400;
+            line-height: 0.98;
+            letter-spacing: -2px;
+        }
+
+        .collaborations-hero h1 em {
+            font-weight: 400;
+        }
+
+        .hero-intro {
+            max-width: 440px;
+            margin-bottom: 6px;
+            padding-left: 32px;
+            border-left: 1px solid #cbc3b9;
+            font-size: 0.84rem;
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        /* SAMARBETEN */
+        .work-section {
+            padding: 52px 7% 90px;
+            background: var(--paper);
+        }
+
+        .work-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 40px;
+            margin-bottom: 28px;
+        }
+
+        .work-heading h2,
+        .process-intro h2 {
+            margin-bottom: 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.6rem, 4.8vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.03;
+        }
+
+        .work-heading h2 {
+            font-size: clamp(2.15rem, 3.5vw, 3.35rem);
+        }
+
+        .work-heading > p {
+            max-width: 430px;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 0.84rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .work-columns {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            align-items: start;
+        }
+
+        .work-column {
+            display: grid;
+            gap: 28px;
+        }
+
+        .collaboration-card {
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--line);
+        }
+
+        .card-media {
+            overflow: hidden;
+            width: 100%;
+            background: #eee9e2;
+        }
+
+        .brand-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .brand-link:focus-visible {
+            outline: 3px solid #242424;
+            outline-offset: -3px;
+        }
+
+        .card-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.65s ease;
+        }
+
+        .placeholder-media {
+            aspect-ratio: 16 / 7;
+            background: #ffffff;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 7;
+            padding: 7%;
+            background: #ffffff;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo-media img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .brand-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 7;
+            padding: 6%;
+            background: #ffffff;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-media--dark {
+            padding: 0;
+            background: #080808;
+        }
+
+        .brand-media--pink {
+            padding: 0;
+            background: #ff9ca8;
+        }
+
+        .brand-media--warm {
+            padding: 0;
+            background: #f7f0ec;
+        }
+
+        .collaboration-card:hover .card-media img {
+            transform: scale(1.015);
+        }
+
+        .card-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 25px;
+            align-items: start;
+            padding: 20px 24px 22px;
+        }
+
+        .card-index {
+            color: #918a82;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.74rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 7px;
+            font-size: 1.08rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .card-role {
+            margin-bottom: 16px;
+            font-size: 0.84rem;
+            font-weight: 400;
+        }
+
+        .card-tags {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.67rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        /* ARBETSSÄTT */
+        .process-section {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 9%;
+            padding: 94px 8% 100px;
+            background: #f0ebe4;
+        }
+
+        .process-intro h2 {
+            max-width: 500px;
+            margin-bottom: 22px;
+        }
+
+        .process-intro > p:last-child {
+            max-width: 470px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.86rem;
+            font-weight: 300;
+            line-height: 1.75;
+        }
+
+        .process-list {
+            counter-reset: step;
+            border-top: 1px solid #d2cac0;
+        }
+
+        .process-step {
+            counter-increment: step;
+            display: grid;
+            grid-template-columns: 56px 150px 1fr;
+            gap: 20px;
+            align-items: baseline;
+            padding: 28px 0;
+            border-bottom: 1px solid #d2cac0;
+        }
+
+        .process-step::before {
+            content: "0" counter(step);
+            color: #8e877f;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.76rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 0;
+            font-size: 0.92rem;
+            font-weight: 400;
+        }
+
+        .process-step p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        /* AVSLUTNING */
+        .collaboration-cta {
+            padding: 88px 8% 92px;
+            text-align: center;
+            color: var(--white);
+            background: #252321;
+        }
+
+        .collaboration-cta .eyebrow {
+            color: rgba(255, 255, 255, 0.62);
+        }
+
+        .collaboration-cta h2 {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.7rem, 5.3vw, 5rem);
+            font-weight: 400;
+            line-height: 1.05;
+        }
+
+        .cta-link {
+            display: inline-block;
+            padding: 14px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            color: var(--white);
+            font-size: 0.64rem;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.2s ease;
+        }
+
+        .cta-link:hover {
+            color: var(--ink);
+            background: var(--white);
+        }
+
+        @media (max-width: 900px) {
+            .collaborations-hero,
+            .process-section {
+                grid-template-columns: 1fr;
+            }
+
+            .collaborations-hero {
+                gap: 45px;
+            }
+
+            .hero-intro {
+                padding-left: 0;
+                border-left: 0;
+            }
+
+            .work-heading {
+                display: block;
+            }
+
+            .work-heading h2 {
+                margin-bottom: 20px;
+            }
+
+            .process-section {
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .collaborations-hero,
+            .work-section,
+            .process-section,
+            .collaboration-cta {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .collaborations-hero h1 {
+                font-size: 2.7rem;
+                letter-spacing: -1px;
+            }
+
+            .work-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .card-content {
+                padding: 23px 22px 25px;
+            }
+
+            .process-step {
+                grid-template-columns: 40px 1fr;
+            }
+
+            .process-step p {
+                grid-column: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar"></header>
+
+    <main class="collaborations-page">
+        <section class="collaborations-hero">
+            <div>
+                <p class="eyebrow">Utvalda samarbeten</p>
+                <h1>Content som känns <em>äkta.</em></h1>
+            </div>
+            <p class="hero-intro">
+                Jag skapar innehåll där varumärkets uttryck möter min kreativa känsla – med fokus på en
+                naturlig berättelse, rätt målgrupp och format som passar sociala medier.
+            </p>
+        </section>
+
+        <section class="work-section">
+            <div class="work-heading">
+                <div>
+                    <p class="eyebrow">Alla samarbeten</p>
+                    <h2>Varumärken jag har arbetat med</h2>
+                </div>
+                <p>
+                    Samarbeten inom beauty, mode, lifestyle, träning, smycken och produktkommunikation.
+                </p>
+            </div>
+
+            <div class="work-columns">
+                <div class="work-column">
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://lyko.com/sv" target="_blank" rel="noopener noreferrer" aria-label="Besök Lykos webbplats">
+                            <div class="card-media brand-media">
+                                <img src="images/lyko-logo.png" alt="Lyko logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>LYKO</h3>
+                                <p class="card-role">TikTok-samarbete</p>
+                                <p class="card-tags">Content creation · Beauty · Kampanj</p>
+                            </div>
+                            <span class="card-index">01</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://fitberry.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Fitberry Sports webbplats">
+                            <div class="card-media brand-media">
+                                <img src="images/fitberry-logo.png" alt="Fitberry logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>FITBERRY SPORTS</h3>
+                                <p class="card-role">Content creation</p>
+                                <p class="card-tags">Lifestyle · Träning · UGC</p>
+                            </div>
+                            <span class="card-index">03</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://madlady.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Madladys webbplats">
+                            <div class="card-media brand-media brand-media--dark">
+                                <img src="images/madlady-logo.png" alt="Madlady logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>MADLADY</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">05</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://www.bubbleroom.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Bubblerooms webbplats">
+                            <div class="card-media brand-media brand-media--warm">
+                                <img src="images/bubbleroom-logo-sharp.svg" alt="Bubbleroom logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>BUBBLEROOM</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">07</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://relode.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Relodes webbplats">
+                            <div class="card-media brand-media brand-media--dark">
+                                <img src="images/relode-logo.png" alt="Relode logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>RELODE</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">09</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="work-column">
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://lenoites.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Lenoites webbplats">
+                            <div class="card-media brand-media">
+                                <img src="images/lenoites-logo.png" alt="Lenoites logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>LENOITES</h3>
+                                <p class="card-role">Content collaboration</p>
+                                <p class="card-tags">Sociala medier · Produktkommunikation</p>
+                            </div>
+                            <span class="card-index">02</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://int.mamonde.com/" target="_blank" rel="noopener noreferrer" aria-label="Besök Mamondes webbplats">
+                            <div class="card-media brand-media">
+                                <img src="images/mamonde-logo.png" alt="Mamonde logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>MAMONDE</h3>
+                                <p class="card-role">Beauty collaboration</p>
+                                <p class="card-tags">Beauty · Content · Sociala medier</p>
+                            </div>
+                            <span class="card-index">04</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://mitt-namnhalsband.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Mitt Namnhalsbands webbplats">
+                            <div class="card-media logo-media">
+                                <img src="images/mittnamnhalsband-logo.png" alt="Mitt Namnhalsband logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>MITTNAMNHALSBAND</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">06</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://www.livinstudio.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Livin Studios webbplats">
+                            <div class="card-media brand-media brand-media--pink">
+                                <img src="images/livin-studio-logo-sharp.svg" alt="Livin Studio logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>LIVIN STUDIO</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">08</span>
+                        </div>
+                    </article>
+
+                    <article class="collaboration-card">
+                        <a class="brand-link" href="https://peachtights.se/" target="_blank" rel="noopener noreferrer" aria-label="Besök Peach Tights webbplats">
+                            <div class="card-media logo-media">
+                                <img src="images/peach-tights-logo.png" alt="Peach Tights logotyp">
+                            </div>
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <h3>PEACH TIGHTS</h3>
+                                <p class="card-role">Varumärkessamarbete</p>
+                                <p class="card-tags">Content creation · Sociala medier</p>
+                            </div>
+                            <span class="card-index">10</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <div class="process-intro">
+                <p class="eyebrow">Mitt sätt att skapa</p>
+                <h2>Från brief till publicerat innehåll.</h2>
+                <p>
+                    Varje samarbete får ett uttryck som passar både varumärket, plattformen och människorna som
+                    ska möta innehållet.
+                </p>
+            </div>
+
+            <div class="process-list">
+                <article class="process-step">
+                    <h3>Riktning</h3>
+                    <p>Jag sätter mig in i varumärket, målgruppen och målet med samarbetet.</p>
+                </article>
+                <article class="process-step">
+                    <h3>Produktion</h3>
+                    <p>Idé och budskap blir visuellt content med en naturlig och genomtänkt känsla.</p>
+                </article>
+                <article class="process-step">
+                    <h3>Publicering</h3>
+                    <p>Innehållet anpassas efter kanal, format och den upplevelse som ska skapas.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="collaboration-cta">
+            <p class="eyebrow">Samarbeta med mig</p>
+            <h2>Har du en idé vi kan skapa tillsammans?</h2>
+            <a class="cta-link" href="kontakt.html">Kontakta mig &nbsp; →</a>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title">
+  <title id="title">Livin Studio logotyp</title>
+  <rect width="1000" height="1000" fill="#ff9ca8"/>
+  <g fill="#ffffff" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="300" text-anchor="middle">
+    <text x="500" y="470" font-size="164" letter-spacing="38">LIVIN</text>
+    <text x="500" y="655" font-size="142" letter-spacing="34">STUDIO</text>
+  </g>
+</svg>
