@@ -465,8 +465,10 @@
         }
 
         .personal-gallery {
+            width: 100%;
+            max-width: 650px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
 
             gap: 8px;
 
@@ -474,8 +476,12 @@
         }
 
         .personal-gallery img {
-            height: 90px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
+            object-position: center;
+            display: block;
         }
 
 
@@ -706,8 +712,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="navigation.css">
-    <script src="navigation.js" defer></script>
+    <link rel="stylesheet" href="navigation.css?v=darkbuttonright1">
+    <script src="navigation.js?v=cookies2" defer></script>
 
 </head>
 
@@ -731,7 +737,7 @@
 
             <a href="erfarenhet.html">ERFARENHET</a>
 
-            <a href="projekt.html">PROJEKT</a>
+            <a href="projekt.html">PORTFOLIO</a>
 
             <a href="samarbeten.html">SAMARBETEN</a>
 
@@ -741,7 +747,7 @@
 
         <div class="social-icons">
 
-            <a href="https://www.instagram.com/" target="_blank">
+            <a href="https://www.instagram.com/ronja.skoglund/" target="_blank" rel="noopener noreferrer">
                 IG
             </a>
 
@@ -858,7 +864,7 @@
 
         <div class="journey-image">
 
-            <img src="images/ronja-journey.jpg" alt="Ronja arbetar med content">
+          <img src="images/ronja-content-creation-hair-v3.png" alt="Ronja arbetar med content">
 
         </div>
 
@@ -1080,7 +1086,7 @@
 
         <div class="personal-main-image">
 
-            <img src="images/ronja-personal.jpg" alt="Ronja på resa">
+            <img src="images/inspiration-city-view.jpeg" alt="Utsikt över Göteborg och vattnet">
 
         </div>
 
@@ -1104,7 +1110,8 @@
             </p>
 
             <p>
-                Jag är nyfiken av naturen och tycker om miljöer där jag
+                Jag älskar mode och skönhet och inspireras av nya trender,
+                uttryck och produkter. Jag tycker om miljöer där jag
                 får utvecklas, bidra med idéer och samtidigt lära mig
                 av andra.
             </p>
@@ -1112,13 +1119,13 @@
 
             <div class="personal-gallery">
 
-                <img src="images/detail-1.jpg" alt="Content creation">
+                <img src="images/gallery-content-creation-v2.jpeg" alt="Content creation">
 
-                <img src="images/detail-2.jpg" alt="Digital marketing">
+                <img src="images/inspiration-beauty.jpg" alt="Smink och skönhetsprodukter">
 
-                <img src="images/detail-3.jpg" alt="Lifestyle">
+                <img src="images/gallery-lifestyle-v2.jpeg" alt="Lifestyle">
 
-                <img src="images/detail-4.jpg" alt="Resor">
+                <img src="images/gallery-travel-v2.jpeg" alt="Resor">
 
             </div>
 
@@ -1184,7 +1191,7 @@
             <div class="contact-socials">
 
                 <!-- INSTAGRAM -->
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/ronja.skoglund/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

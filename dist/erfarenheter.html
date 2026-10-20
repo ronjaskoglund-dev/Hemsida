@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="navigation.css">
-    <script src="navigation.js" defer></script>
+    <link rel="stylesheet" href="navigation.css?v=darkbuttonright1">
+    <script src="navigation.js?v=cookies2" defer></script>
 
     <style>
         * {
@@ -170,6 +170,19 @@
             letter-spacing: 2px;
             line-height: 1.6;
             text-transform: uppercase;
+        }
+
+        .timeline-logo {
+            display: block;
+            width: 58px;
+            height: 58px;
+            margin-top: 14px;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .timeline-logo--ihm {
+            object-fit: cover;
         }
 
         .timeline-content h3 {
@@ -493,7 +506,11 @@
 
             <div class="timeline">
                 <article class="timeline-item">
-                    <div class="timeline-meta">2026 – pågående</div>
+                    <div class="timeline-meta">
+                        <span>2026 – pågående</span>
+                        <img class="timeline-logo timeline-logo--ihm" src="images/ihm-business-school-logo.png"
+                            alt="IHM Business School">
+                    </div>
                     <div class="timeline-content">
                         <h3>Digital Marketing Specialist</h3>
                         <p class="timeline-subtitle">IHM Business School, Göteborg</p>
@@ -511,7 +528,10 @@
                 </article>
 
                 <article class="timeline-item">
-                    <div class="timeline-meta">Juni 2024 – pågående</div>
+                    <div class="timeline-meta">
+                        <span>Juni 2024 – pågående</span>
+                        <img class="timeline-logo" src="images/tiktok-logo.png" alt="TikTok">
+                    </div>
                     <div class="timeline-content">
                         <h3>Social media marketing</h3>
                         <p class="timeline-subtitle">TikTok · Frilans · Göteborg · Hybrid</p>
@@ -528,7 +548,10 @@
                 </article>
 
                 <article class="timeline-item">
-                    <div class="timeline-meta">1 oktober 2026 – pågående</div>
+                    <div class="timeline-meta">
+                        <span>1 oktober 2026 – pågående</span>
+                        <img class="timeline-logo" src="images/design-only-logo.png" alt="Design Only">
+                    </div>
                     <div class="timeline-content">
                         <h3>Butiksäljare</h3>
                         <p class="timeline-subtitle">Design Only · Pågående</p>
@@ -564,7 +587,10 @@
                 </article>
 
                 <article class="timeline-item">
-                    <div class="timeline-meta">Augusti 2022 – mars 2025</div>
+                    <div class="timeline-meta">
+                        <span>Augusti 2022 – mars 2025</span>
+                        <img class="timeline-logo" src="images/livin-studio-logo-sharp.svg" alt="Livin Studio">
+                    </div>
                     <div class="timeline-content">
                         <h3>Assistant Store Manager</h3>
                         <p class="timeline-subtitle">LIVIN Studio · Deltid · Mölnlycke · Hybrid</p>
@@ -647,7 +673,7 @@
         <section class="experience-cta">
             <p class="eyebrow">Nästa steg</p>
             <h2>Vill du se vad jag har skapat?</h2>
-            <a class="cta-link" href="projekt.html">Se mina projekt &nbsp; →</a>
+            <a class="cta-link" href="projekt.html">Se min portfolio &nbsp; →</a>
         </section>
     </main>
 </body>
