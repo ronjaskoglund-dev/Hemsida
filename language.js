@@ -198,7 +198,7 @@
         "E-post": "Email",
         "Meddelande": "Message",
         "Skicka meddelande": "Send message",
-        "Meddelandet skickas direkt till min e-post.": "Your message is sent directly to my email.",
+        "Meddelandet skickas säkert via HubSpot.": "Your message is sent securely through HubSpot.",
         "Mina kontaktuppgifter": "My contact details",
         "Du når mig här.": "You can reach me here.",
         "Du kan också kontakta mig direkt via e-post eller LinkedIn.": "You can also contact me directly by email or LinkedIn.",
