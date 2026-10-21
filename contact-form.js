@@ -1,7 +1,9 @@
 (() => {
     const HUBSPOT_PORTAL_ID = '149587357';
     const HUBSPOT_FORM_ID = '4049832f-829a-4fed-b3b2-64427f166c7f';
-    const ENDPOINT = `https://forms-eu1.hsforms.com/submissions/v3/public/submit/formsnext/multipart/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
+    const HUBSPOT_REGION = 'eu1';
+    const ENDPOINT = `https://api-${HUBSPOT_REGION}.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
+    const REQUEST_TIMEOUT_MS = 15000;
 
     const messages = {
         sv: {
@@ -18,12 +20,33 @@
         }
     };
 
-    const addHiddenField = (form, name, value) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
+    const getHubSpotCookie = () => {
+        const cookie = document.cookie
+            .split('; ')
+            .find((item) => item.startsWith('hubspotutk='));
+
+        return cookie ? decodeURIComponent(cookie.split('=').slice(1).join('=')) : undefined;
+    };
+
+    const buildPayload = ({ firstName, lastName, email, message }) => {
+        const hutk = getHubSpotCookie();
+        const context = {
+            pageUri: window.location.href,
+            pageName: document.title
+        };
+
+        if (hutk) context.hutk = hutk;
+
+        return {
+            submittedAt: Date.now().toString(),
+            fields: [
+                { objectTypeId: '0-1', name: 'firstname', value: firstName },
+                { objectTypeId: '0-1', name: 'lastname', value: lastName },
+                { objectTypeId: '0-1', name: 'email', value: email },
+                { objectTypeId: '0-1', name: 'message', value: message }
+            ],
+            context
+        };
     };
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -33,9 +56,9 @@
         const submitButton = form.querySelector('.submit-button');
         const status = form.querySelector('.form-status');
 
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            if (!form.reportValidity()) return;
+            if (!form.reportValidity() || submitButton.disabled) return;
 
             const language = document.documentElement.lang === 'en' ? 'en' : 'sv';
             const copy = messages[language];
@@ -43,76 +66,51 @@
             const lastName = form.elements['last-name'].value.trim();
             const email = form.elements.email.value.trim();
             const message = form.elements.message.value.trim();
-            const honey = form.elements._honey.value;
 
-            // Stoppa bottar utan att skicka något till HubSpot.
-            if (honey) {
+            // Honeypot: låtsas lyckas för bottar utan att skicka något till HubSpot.
+            if (form.elements._honey.value) {
                 form.reset();
                 return;
             }
 
             submitButton.disabled = true;
             submitButton.textContent = copy.sending;
+            submitButton.setAttribute('aria-busy', 'true');
             status.hidden = true;
             status.className = 'form-status';
 
-            const frameName = `hubspot_submission_${Date.now()}`;
-            const iframe = document.createElement('iframe');
-            iframe.name = frameName;
-            iframe.title = 'HubSpot submission';
-            iframe.hidden = true;
+            const controller = new AbortController();
+            const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
-            const hubspotForm = document.createElement('form');
-            hubspotForm.method = 'POST';
-            hubspotForm.action = ENDPOINT;
-            hubspotForm.enctype = 'multipart/form-data';
-            hubspotForm.target = frameName;
-            hubspotForm.hidden = true;
+            try {
+                const response = await fetch(ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(buildPayload({ firstName, lastName, email, message })),
+                    signal: controller.signal
+                });
 
-            addHiddenField(hubspotForm, '0-1/firstname', firstName);
-            addHiddenField(hubspotForm, '0-1/lastname', lastName);
-            addHiddenField(hubspotForm, '0-1/email', email);
-            addHiddenField(hubspotForm, '0-1/message', message);
-            addHiddenField(hubspotForm, 'hs_context', JSON.stringify({
-                pageUrl: window.location.href,
-                pageName: document.title
-            }));
-
-            let submitted = false;
-            const finish = (success) => {
-                if (submitted) return;
-                submitted = true;
-
-                if (success) {
-                    form.reset();
-                    status.textContent = copy.success;
-                    status.classList.add('form-status--success');
-                } else {
-                    status.textContent = copy.error;
-                    status.classList.add('form-status--error');
+                if (!response.ok) {
+                    throw new Error(`HubSpot svarade med status ${response.status}`);
                 }
 
+                form.reset();
+                status.textContent = copy.success;
+                status.classList.add('form-status--success');
+            } catch (error) {
+                console.error('Kontaktformuläret kunde inte skickas:', error);
+                status.textContent = copy.error;
+                status.classList.add('form-status--error');
+            } finally {
+                window.clearTimeout(timeout);
                 status.hidden = false;
                 submitButton.disabled = false;
                 submitButton.textContent = copy.button;
-                window.setTimeout(() => {
-                    hubspotForm.remove();
-                    iframe.remove();
-                }, 1000);
-            };
-
-            iframe.addEventListener('load', () => {
-                iframe.addEventListener('load', () => finish(true), { once: true });
-
-                try {
-                    hubspotForm.submit();
-                    window.setTimeout(() => finish(false), 15000);
-                } catch {
-                    finish(false);
-                }
-            }, { once: true });
-
-            document.body.append(iframe, hubspotForm);
+                submitButton.removeAttribute('aria-busy');
+            }
         });
     });
 })();
