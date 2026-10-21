@@ -1,13 +1,21 @@
 const savedTheme = localStorage.getItem('ronja-theme');
 document.documentElement.dataset.theme = savedTheme || 'light';
+const SITE_LANGUAGE_KEY = 'ronja-language';
+const getSiteLanguage = () => localStorage.getItem(SITE_LANGUAGE_KEY) === 'en' ? 'en' : 'sv';
+document.documentElement.lang = getSiteLanguage();
 
 const updateThemeButton = () => {
     const themeToggle = document.querySelector('.theme-toggle');
     if (!themeToggle) return;
 
     const isDark = document.documentElement.dataset.theme === 'dark';
-    themeToggle.setAttribute('aria-label', isDark ? 'Aktivera ljust läge' : 'Aktivera mörkt läge');
-    themeToggle.setAttribute('title', isDark ? 'Ljust läge' : 'Mörkt läge');
+    const isEnglish = getSiteLanguage() === 'en';
+    themeToggle.setAttribute('aria-label', isDark
+        ? (isEnglish ? 'Enable light mode' : 'Aktivera ljust läge')
+        : (isEnglish ? 'Enable dark mode' : 'Aktivera mörkt läge'));
+    themeToggle.setAttribute('title', isDark
+        ? (isEnglish ? 'Light mode' : 'Ljust läge')
+        : (isEnglish ? 'Dark mode' : 'Mörkt läge'));
     themeToggle.setAttribute('aria-pressed', String(isDark));
 };
 
@@ -16,6 +24,21 @@ window.toggleSiteTheme = () => {
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem('ronja-theme', nextTheme);
     updateThemeButton();
+};
+
+const updateLanguageButtons = () => {
+    const language = getSiteLanguage();
+    document.querySelectorAll('[data-site-language]').forEach((button) => {
+        const active = button.dataset.siteLanguage === language;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+    });
+};
+
+window.setSiteLanguage = (language) => {
+    const nextLanguage = language === 'en' ? 'en' : 'sv';
+    localStorage.setItem(SITE_LANGUAGE_KEY, nextLanguage);
+    window.location.reload();
 };
 
 const COOKIE_CONSENT_NAME = 'ronja_cookie_consent';
@@ -43,15 +66,16 @@ const showCookieConsent = () => {
     consent.setAttribute('role', 'dialog');
     consent.setAttribute('aria-modal', 'false');
     consent.setAttribute('aria-labelledby', 'cookie-consent-title');
+    const isEnglish = getSiteLanguage() === 'en';
     consent.innerHTML = `
         <div class="cookie-consent__copy">
             <p class="cookie-consent__label">Cookies</p>
-            <h2 id="cookie-consent-title">Din integritet är viktig.</h2>
-            <p>Den här webbplatsen använder nödvändiga cookies för att komma ihåg ditt val. Du kan godkänna eller avvisa cookies.</p>
+            <h2 id="cookie-consent-title">${isEnglish ? 'Your privacy matters.' : 'Din integritet är viktig.'}</h2>
+            <p>${isEnglish ? 'This website uses necessary cookies to remember your choice. You can accept or reject cookies.' : 'Den här webbplatsen använder nödvändiga cookies för att komma ihåg ditt val. Du kan godkänna eller avvisa cookies.'}</p>
         </div>
         <div class="cookie-consent__actions">
-            <button class="cookie-consent__button cookie-consent__button--secondary" type="button" data-cookie-choice="rejected">Avvisa</button>
-            <button class="cookie-consent__button cookie-consent__button--primary" type="button" data-cookie-choice="accepted">Godkänn</button>
+            <button class="cookie-consent__button cookie-consent__button--secondary" type="button" data-cookie-choice="rejected">${isEnglish ? 'Reject' : 'Avvisa'}</button>
+            <button class="cookie-consent__button cookie-consent__button--primary" type="button" data-cookie-choice="accepted">${isEnglish ? 'Accept' : 'Godkänn'}</button>
         </div>`;
 
     consent.addEventListener('click', (event) => {
@@ -74,13 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     header.className = 'navbar';
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const isEnglish = getSiteLanguage() === 'en';
     const links = [
-        ['index.html', 'HEM'],
-        ['om-mig.html', 'OM MIG'],
-        ['erfarenheter.html', 'ERFARENHET'],
+        ['index.html', isEnglish ? 'HOME' : 'HEM'],
+        ['om-mig.html', isEnglish ? 'ABOUT ME' : 'OM MIG'],
+        ['erfarenheter.html', isEnglish ? 'EXPERIENCE' : 'ERFARENHET'],
         ['projekt.html', 'PORTFOLIO'],
-        ['samarbeten.html', 'SAMARBETEN'],
-        ['kontakt.html', 'KONTAKT']
+        ['samarbeten.html', isEnglish ? 'COLLABORATIONS' : 'SAMARBETEN'],
+        ['kontakt.html', isEnglish ? 'CONTACT' : 'KONTAKT']
     ];
 
     const navigation = links.map(([href, label]) => {
@@ -105,8 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg>
                 <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
             </button>
+            <div class="language-toggle" role="group" aria-label="${isEnglish ? 'Choose language' : 'Välj språk'}">
+                <button type="button" data-site-language="sv" aria-label="${isEnglish ? 'Swedish' : 'Svenska'}" title="${isEnglish ? 'Swedish' : 'Svenska'}" onclick="window.setSiteLanguage('sv')">🇸🇪</button>
+                <button type="button" data-site-language="en" aria-label="${isEnglish ? 'English' : 'Engelska'}" title="${isEnglish ? 'English' : 'Engelska'}" onclick="window.setSiteLanguage('en')">🇬🇧</button>
+            </div>
         </div>`;
 
     updateThemeButton();
+    updateLanguageButtons();
     showCookieConsent();
 });

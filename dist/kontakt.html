@@ -11,8 +11,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="navigation.css?v=darkbuttonright1">
-    <script src="navigation.js?v=cookies2" defer></script>
+    <link rel="stylesheet" href="navigation.css?v=language1">
+    <script src="navigation.js?v=language1" defer></script>
+    <script src="language.js?v=language1" defer></script>
+    <script src="contact-form.js?v=hubspot2" defer></script>
 
     <style>
         * {
@@ -205,6 +207,34 @@
             line-height: 1.5;
         }
 
+        .form-status {
+            grid-column: 1 / -1;
+            margin: 2px 0 0;
+            padding: 13px 15px;
+            border: 1px solid currentColor;
+            font-size: 0.76rem;
+            line-height: 1.5;
+        }
+
+        .form-status[hidden] {
+            display: none;
+        }
+
+        .form-status--success {
+            color: #255f43;
+            background: #edf7f1;
+        }
+
+        .form-status--error {
+            color: #8b2e2e;
+            background: #fff0f0;
+        }
+
+        .submit-button:disabled {
+            cursor: wait;
+            opacity: 0.62;
+        }
+
         .details-panel {
             padding: 42px 42px 46px;
             background: var(--cream);
@@ -365,10 +395,7 @@
                     Berätta kort vad du vill diskutera, så återkommer jag så snart jag kan.
                 </p>
 
-                <form class="contact-form" id="contact-form" action="https://formsubmit.co/ronja.skoglund@gmail.com"
-                    method="POST">
-                    <input type="hidden" name="_subject" value="Nytt meddelande från portfoliohemsidan">
-                    <input type="hidden" name="_template" value="table">
+                <form class="contact-form" id="contact-form" method="POST">
                     <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
                     <div class="form-field">
                         <label for="first-name">Namn</label>
@@ -396,8 +423,9 @@
 
                     <div class="form-actions">
                         <button class="submit-button" type="submit">Skicka meddelande</button>
-                        <p class="form-note">Efter skickat meddelande visas en bekräftelsesida.</p>
+                        <p class="form-note">Meddelandet skickas direkt till min e-post.</p>
                     </div>
+                    <p class="form-status" role="status" aria-live="polite" hidden></p>
                 </form>
             </div>
 
