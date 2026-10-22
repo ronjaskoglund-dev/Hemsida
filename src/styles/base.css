@@ -2,10 +2,6 @@
   color-scheme: light;
 }
 
-.optimized-picture {
-  display: contents;
-}
-
 html[data-theme="dark"] {
     color-scheme: dark;
 }

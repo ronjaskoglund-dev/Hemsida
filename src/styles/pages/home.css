@@ -129,10 +129,6 @@
             height: 520px;
 
             background-image: url("../../assets/images/banner.png");
-            background-image: image-set(
-                url("../../assets/images/banner.webp") type("image/webp"),
-                url("../../assets/images/banner.png") type("image/png")
-            );
             background-size: cover;
             background-position: center;
 
@@ -768,10 +764,7 @@
                     rgba(14, 12, 10, 0.82) 0%,
                     rgba(14, 12, 10, 0.68) 55%,
                     rgba(14, 12, 10, 0.78) 100%),
-                image-set(
-                    url("../../assets/images/contact-background.webp") type("image/webp"),
-                    url("../../assets/images/contact-background.jpg") type("image/jpeg")
-                );
+                url("../../assets/images/contact-background.jpg");
             background-size: cover;
             background-position: center 30%;
         }

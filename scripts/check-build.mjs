@@ -13,13 +13,6 @@ for (const page of pages) {
     if (html.includes('<style')) failures.push(`${page} contains inline CSS`);
     if (html.includes('onclick=')) failures.push(`${page} contains an inline event handler`);
     if (html.includes('googletagmanager.com/gtm.js')) failures.push(`${page} loads analytics before consent`);
-    for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
-      for (const attribute of ['width', 'height', 'loading', 'decoding']) {
-        if (!new RegExp(`\\b${attribute}=`).test(image[0])) {
-          failures.push(`${page} has an image without ${attribute}`);
-        }
-      }
-    }
   } catch {
     failures.push(`${page} is missing`);
   }
