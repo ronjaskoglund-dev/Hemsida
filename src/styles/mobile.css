@@ -1,0 +1,263 @@
+/* Mobile-only refinements. Desktop layout remains unchanged. */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    .navbar {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 64px;
+        height: 64px;
+        padding: 0 18px;
+    }
+
+    .navbar .logo {
+        min-width: 0;
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+    }
+
+    .navbar .social-icons {
+        position: static;
+        display: flex;
+        gap: 8px;
+        justify-self: end;
+    }
+
+    .navbar .social-icons > a {
+        display: none;
+    }
+
+    .navbar .theme-toggle {
+        width: 36px;
+        height: 36px;
+        margin: 0;
+    }
+
+    .navbar .language-toggle {
+        gap: 0;
+        margin: 0;
+    }
+
+    .navbar .language-toggle button {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    .menu-toggle {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        padding: 10px 8px;
+        place-content: center;
+        gap: 5px;
+        color: #242424;
+        background: transparent;
+        border: 1px solid rgba(36, 36, 36, 0.28);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: currentColor;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .navbar.is-menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .navbar.is-menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar.is-menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .navbar .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 110;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 18px;
+        visibility: hidden;
+        background: #f5efe6;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: max-height 0.28s ease, padding 0.28s ease, opacity 0.2s ease, transform 0.2s ease, visibility 0.28s;
+    }
+
+    .navbar.is-menu-open .nav-links {
+        max-height: 440px;
+        padding-top: 10px;
+        padding-bottom: 14px;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .navbar .nav-links a {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+        padding: 0 4px;
+        font-size: 0.67rem;
+        letter-spacing: 2.5px;
+        border-bottom: 1px solid rgba(36, 36, 36, 0.1);
+    }
+
+    .navbar .nav-links a:last-child {
+        border-bottom: 0;
+    }
+
+    html[data-theme="dark"] .menu-toggle {
+        color: #f2ece4;
+        border-color: rgba(242, 236, 228, 0.35);
+    }
+
+    html[data-theme="dark"] .navbar .nav-links {
+        background: #1f1c19;
+        border-bottom-color: rgba(255, 255, 255, 0.09);
+    }
+
+    html[data-theme="dark"] .navbar .nav-links a {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    img,
+    video {
+        max-width: 100%;
+    }
+
+    .hero-content,
+    .hero-copy,
+    .about-hero-content,
+    .journey-text,
+    .personal-content,
+    .section-heading,
+    .work-heading,
+    .contact-content,
+    .collaborations-hero,
+    .contact-hero,
+    .experience-hero {
+        min-width: 0;
+    }
+
+    .contact-item a,
+    .contact-details a,
+    .details-panel a {
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 680px) {
+    .hero-content {
+        margin-right: 6%;
+        margin-left: 6%;
+    }
+
+    .hero h1,
+    .hero-copy h1 {
+        font-size: clamp(2.55rem, 13vw, 3.35rem);
+        line-height: 0.98;
+    }
+
+    .about-hero-content,
+    .journey-text,
+    .personal-content,
+    .strengths-section,
+    .background-section {
+        padding-right: 6%;
+        padding-left: 6%;
+    }
+
+    .about-hero-image {
+        height: min(500px, 125vw);
+    }
+
+    .personal-main-image {
+        height: min(440px, 112vw);
+    }
+
+    .portfolio-section,
+    .work-section,
+    .timeline-section,
+    .competence-section,
+    .contact-content {
+        padding-right: 6%;
+        padding-left: 6%;
+    }
+
+    .section-heading h2,
+    .work-heading h2,
+    .process-copy h2,
+    .competence-heading h2 {
+        overflow-wrap: anywhere;
+    }
+
+    .cookie-consent {
+        max-height: calc(100svh - 28px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding-right: 12px;
+        padding-left: 14px;
+        gap: 7px;
+    }
+
+    .navbar .logo {
+        font-size: 1.05rem;
+        letter-spacing: 4px;
+    }
+
+    .hero-buttons,
+    .hero-buttons .button {
+        width: 100%;
+    }
+
+    .hero-buttons .button {
+        min-width: 0;
+    }
+
+    .about-facts,
+    .details-panel,
+    .background-card {
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    .category-heading h3 {
+        font-size: 2.25rem;
+    }
+
+    .projects-cta .cta-link,
+    .collaboration-cta .cta-link,
+    .experience-cta .cta-link {
+        width: 100%;
+    }
+}

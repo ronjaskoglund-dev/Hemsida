@@ -33,6 +33,42 @@ const updateLanguageButtons = () => {
     });
 };
 
+const setupMobileMenu = () => {
+    const navbar = document.querySelector('.navbar');
+    const button = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.navbar .nav-links');
+    if (!navbar || !button || !navigation) return;
+
+    const closeMenu = () => {
+        navbar.classList.remove('is-menu-open');
+        button.setAttribute('aria-expanded', 'false');
+        const english = getLanguage() === 'en';
+        button.setAttribute('aria-label', english ? 'Open menu' : 'Öppna meny');
+    };
+
+    button.addEventListener('click', () => {
+        const open = !navbar.classList.contains('is-menu-open');
+        navbar.classList.toggle('is-menu-open', open);
+        button.setAttribute('aria-expanded', String(open));
+        const english = getLanguage() === 'en';
+        button.setAttribute('aria-label', open
+            ? (english ? 'Close menu' : 'Stäng meny')
+            : (english ? 'Open menu' : 'Öppna meny'));
+    });
+
+    navigation.addEventListener('click', (event) => {
+        if (event.target.closest('a')) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 850) closeMenu();
+    });
+};
+
 const readCookieConsent = () => {
     const consentCookie = document.cookie
         .split('; ')
@@ -80,6 +116,8 @@ const showCookieConsent = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupMobileMenu();
+
     document.querySelector('.theme-toggle')?.addEventListener('click', () => {
         const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = nextTheme;

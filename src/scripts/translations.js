@@ -593,8 +593,8 @@ export const textTranslations = {
     "en": "Examples of collaborations, product content and other work showing how I approach format, visual feel and storytelling."
   },
   "text.5e11853a97": {
-    "sv": "TikTok-videos som har gått bra",
-    "en": "Top-performing TikTok videos"
+    "sv": "Content highlights",
+    "en": "Content highlights"
   },
   "text.5ad405627f": {
     "sv": "Mina mest sedda videos från TikTok – eget innehåll som har skapat räckvidd, engagemang och inspiration.",
