@@ -1,0 +1,18 @@
+{
+  "name": "ronja-skoglund-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/minify-html.mjs",
+    "preview": "vite preview",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "check": "node scripts/check-build.mjs"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "sharp": "^0.34.4",
+    "vite": "^7.1.12",
+    "vite-plugin-handlebars": "^2.0.0"
+  }
+}

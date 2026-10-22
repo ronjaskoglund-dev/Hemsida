@@ -1,0 +1,17 @@
+:root {
+  color-scheme: light;
+}
+
+.optimized-picture {
+  display: contents;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+.honeypot,
+.analytics-fallback {
+    display: none;
+    visibility: hidden;
+}

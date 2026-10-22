@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html data-i18n-page="title.6d6d913b75" lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Ronja Skoglund</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/components.css">
+    <link rel="stylesheet" href="./styles/pages/contact.css">
+    <script type="module" src="./scripts/site.js"></script>
+    <script type="module" src="./scripts/language.js"></script>
+    <script type="module" src="./scripts/contact-form.js"></script>
+</head>
+
+<body>
+    {{> header}}
+
+    <main class="contact-page">
+        <section class="contact-hero">
+            <div>
+                <p class="eyebrow"><span data-i18n="text.a92b9bcb16">Kontakt</span></p>
+                <h1><span data-i18n="text.4acda59801">Låt oss skapa något</span> <em><span data-i18n="text.3772db817c">tillsammans.</span></em></h1>
+            </div>
+            <p class="hero-intro">
+                <span data-i18n="text.f4e1abc88b">Har du en idé, ett samarbete eller en möjlighet du vill prata om? Fyll i formuläret så blir
+                det enkelt att skicka ett meddelande till mig.</span>
+            </p>
+        </section>
+
+        <section class="contact-content">
+            <div class="form-panel">
+                <p class="eyebrow"><span data-i18n="text.1f458cb267">Skicka ett meddelande</span></p>
+                <h2><span data-i18n="text.15fb1312ba">Vad kan jag hjälpa dig med?</span></h2>
+                <p class="form-intro">
+                    <span data-i18n="text.113a9238a2">Berätta kort vad du vill diskutera, så återkommer jag så snart jag kan.</span>
+                </p>
+
+                <form class="contact-form" id="contact-form" method="POST">
+                    <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off">
+                    <div class="form-field">
+                        <label for="first-name"><span data-i18n="text.26e32eec2d">Namn</span></label>
+                        <input id="first-name" name="first-name" type="text" autocomplete="given-name"
+                            placeholder="Ditt namn" required data-i18n-placeholder="attribute.9d31c9326d">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="last-name"><span data-i18n="text.56106cb6d4">Efternamn</span></label>
+                        <input id="last-name" name="last-name" type="text" autocomplete="family-name"
+                            placeholder="Ditt efternamn" required data-i18n-placeholder="attribute.600daa3dcf">
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="email"><span data-i18n="text.b3418c9716">E-post</span></label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="din@email.se"
+                            required data-i18n-placeholder="attribute.3d5a1230bd">
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="message"><span data-i18n="text.dd21c9f2b2">Meddelande</span></label>
+                        <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..."
+                            required data-i18n-placeholder="attribute.e686540976"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="submit-button" type="submit"><span data-i18n="text.1f51ec1b5b">Skicka meddelande</span></button>
+                        <p class="form-note"><span data-i18n="text.8c183d4fe7">Meddelandet skickas säkert via HubSpot.</span></p>
+                    </div>
+                    <p class="form-status" role="status" aria-live="polite" hidden></p>
+                </form>
+            </div>
+
+            <aside class="details-panel">
+                <p class="eyebrow"><span data-i18n="text.fec8048cc5">Mina kontaktuppgifter</span></p>
+                <h2><span data-i18n="text.c188f6d71d">Du når mig här.</span></h2>
+                <p class="details-intro">
+                    <span data-i18n="text.8aae2ef47b">Du kan också kontakta mig direkt via e-post eller LinkedIn.</span>
+                </p>
+
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span><span data-i18n="text.b3418c9716">E-post</span></span>
+                        <a href="mailto:ronja.skoglund@gmail.com">ronja.skoglund@gmail.com</a>
+                    </li>
+                    <li class="contact-item">
+                        <span><span data-i18n="text.558a5caa5b">Plats</span></span>
+                        <p><span data-i18n="text.d1b009a8d2">Göteborg, Sverige</span></p>
+                    </li>
+                    <li class="contact-item">
+                        <span>LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/ronja-skoglund" target="_blank"
+                            rel="noopener noreferrer">Ronja Skoglund</a>
+                    </li>
+                </ul>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/ronja.skoglund/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a>
+                    <a href="https://www.linkedin.com/in/ronja-skoglund" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+</body>
+
+</html>

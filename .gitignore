@@ -1,2 +1,6 @@
 .DS_Store
 .openai/
+node_modules/
+.pnpm-store/
+dist/
+.vite/
