@@ -130,8 +130,8 @@
 
             background-color: #d7dadd;
             background-image: url("../../assets/images/home-hero-chair.png");
-            background-size: auto 112%;
-            background-position: right 48%;
+            background-size: cover;
+            background-position: center 20%;
             background-repeat: no-repeat;
 
             display: flex;
