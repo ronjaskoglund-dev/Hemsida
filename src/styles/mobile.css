@@ -13,12 +13,13 @@
     .navbar {
         position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto;
-        gap: 10px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 10px;
+        row-gap: 14px;
         align-items: center;
-        min-height: 64px;
-        height: 64px;
-        padding: 0 18px;
+        min-height: 0;
+        height: auto;
+        padding: 14px 18px 13px;
     }
 
     .navbar .logo {
@@ -56,17 +57,7 @@
     }
 
     .menu-toggle {
-        display: grid;
-        width: 40px;
-        height: 40px;
-        padding: 10px 8px;
-        place-content: center;
-        gap: 5px;
-        color: #242424;
-        background: transparent;
-        border: 1px solid rgba(36, 36, 36, 0.28);
-        border-radius: 50%;
-        cursor: pointer;
+        display: none;
     }
 
     .menu-toggle span {
@@ -90,46 +81,30 @@
     }
 
     .navbar .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        z-index: 110;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        padding: 0 18px;
-        visibility: hidden;
-        background: #f5efe6;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        opacity: 0;
-        transform: translateY(-8px);
-        transition: max-height 0.28s ease, padding 0.28s ease, opacity 0.2s ease, transform 0.2s ease, visibility 0.28s;
-    }
-
-    .navbar.is-menu-open .nav-links {
-        max-height: 440px;
-        padding-top: 10px;
-        padding-bottom: 14px;
+        position: static;
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 18px;
+        max-height: none;
+        overflow: visible;
+        padding: 0;
         visibility: visible;
+        background: transparent;
+        border: 0;
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
+        transition: none;
     }
 
     .navbar .nav-links a {
-        display: flex;
-        align-items: center;
-        min-height: 48px;
-        padding: 0 4px;
-        font-size: 0.67rem;
-        letter-spacing: 2.5px;
-        border-bottom: 1px solid rgba(36, 36, 36, 0.1);
-    }
-
-    .navbar .nav-links a:last-child {
-        border-bottom: 0;
+        display: inline-flex;
+        min-height: 0;
+        padding: 0;
+        font-size: 0.58rem;
+        letter-spacing: 1.8px;
+        border: 0;
     }
 
     html[data-theme="dark"] .menu-toggle {
@@ -138,12 +113,7 @@
     }
 
     html[data-theme="dark"] .navbar .nav-links {
-        background: #1f1c19;
-        border-bottom-color: rgba(255, 255, 255, 0.09);
-    }
-
-    html[data-theme="dark"] .navbar .nav-links a {
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+        background: transparent;
     }
 
     img,
@@ -233,6 +203,15 @@
     .navbar .logo {
         font-size: 1.05rem;
         letter-spacing: 4px;
+    }
+
+    .navbar .nav-links {
+        gap: 9px 12px;
+    }
+
+    .navbar .nav-links a {
+        font-size: 0.52rem;
+        letter-spacing: 1.3px;
     }
 
     .hero-buttons,
