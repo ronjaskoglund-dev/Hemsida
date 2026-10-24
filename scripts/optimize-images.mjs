@@ -6,6 +6,7 @@ const imageDirectory = path.resolve('src/assets/images');
 const jobs = [
   ['banner.png', 1680],
   ['ronja-home-about-sharp.png', 1280],
+  ['ronja-home-about-bw.png', 1280],
   ['stats-content-image-sharp.png', 1960],
   ['ronja-about-left.png', 1536],
   ['ronja-content-creation-hair-v3.png', 1536],
