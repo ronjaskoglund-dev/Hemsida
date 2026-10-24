@@ -1012,9 +1012,33 @@
 
         @media (max-width: 600px) {
 
+            .hero {
+                height: auto;
+                min-height: 0;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-photo {
+                position: relative;
+                top: auto;
+                left: auto;
+
+                width: 100%;
+                height: auto;
+
+                transform: none;
+            }
+
             .hero-content {
-                margin: 0 24px;
-                transform: translateY(70px);
+                width: 100%;
+                max-width: none;
+
+                margin: 0;
+                padding: 28px 24px 34px;
+
+                background: #f5efe6;
+                transform: none;
             }
 
             .hero .small-label {
