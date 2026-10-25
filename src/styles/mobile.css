@@ -38,73 +38,48 @@
         letter-spacing: 0.25px;
     }
 
-    .projects-page .video-frame video::-webkit-media-controls-overlay-play-button {
-        display: none !important;
-        -webkit-appearance: none;
-    }
-
-    .projects-page .mobile-video-play {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 3;
-        display: grid;
-        width: 26px;
-        height: 26px;
-        padding: 0;
-        color: #171614;
-        background: rgba(250, 248, 245, 0.92);
-        border: 0;
-        border-radius: 50%;
-        place-items: center;
-        transform: translate(-50%, -50%);
-        cursor: pointer;
-    }
-
-    .projects-page .mobile-video-play::before {
-        width: 0;
-        height: 0;
-        margin-left: 2px;
-        border-top: 4px solid transparent;
-        border-bottom: 4px solid transparent;
-        border-left: 7px solid currentColor;
-        content: "";
-    }
-
-    .projects-page .mobile-video-play[hidden] {
-        display: none;
-    }
-
     .collaborations-page .work-columns {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
+        gap: 10px;
     }
 
     .collaborations-page .work-column {
         display: grid;
-        gap: 6px;
-    }
-
-    .collaborations-page .card-media,
-    .collaborations-page .brand-media,
-    .collaborations-page .logo-media {
-        height: 40px;
-        aspect-ratio: auto;
+        gap: 10px;
     }
 
     .collaborations-page .card-content {
-        display: block;
-        padding: 4px 6px 5px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 6px;
+        padding: 8px 9px 9px;
     }
 
     .collaborations-page .card-content h3 {
-        overflow: hidden;
-        margin: 0;
-        font-size: 0.52rem;
-        letter-spacing: 0.8px;
+        margin: 0 0 3px;
+        font-size: 0.68rem;
+        letter-spacing: 1.25px;
         line-height: 1.2;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    }
+
+    .collaborations-page .card-role {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.56rem;
+        line-height: 1.25;
+    }
+
+    .collaborations-page .card-tags {
+        display: block;
+        margin: 0;
+        font-size: 0.46rem;
+        letter-spacing: 0.25px;
+        line-height: 1.35;
+    }
+
+    .collaborations-page .card-index {
+        display: block;
+        font-size: 0.54rem;
     }
 }
 

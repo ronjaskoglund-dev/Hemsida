@@ -69,43 +69,6 @@ const setupMobileMenu = () => {
     });
 };
 
-const setupMobileVideoPlayButtons = () => {
-    if (!document.body.querySelector('.projects-page')) return;
-
-    const mobileQuery = window.matchMedia('(max-width: 680px)');
-
-    const syncButtons = () => {
-        document.querySelectorAll('.projects-page .video-frame').forEach((frame) => {
-            const video = frame.querySelector('video');
-            if (!video) return;
-
-            let button = frame.querySelector('.mobile-video-play');
-            if (!mobileQuery.matches) {
-                button?.remove();
-                return;
-            }
-
-            if (!button) {
-                button = document.createElement('button');
-                button.className = 'mobile-video-play';
-                button.type = 'button';
-                button.setAttribute('aria-label', 'Spela video');
-                button.addEventListener('click', () => video.play());
-                frame.append(button);
-
-                video.addEventListener('play', () => { button.hidden = true; });
-                video.addEventListener('pause', () => { button.hidden = false; });
-                video.addEventListener('ended', () => { button.hidden = false; });
-            }
-
-            button.hidden = !video.paused;
-        });
-    };
-
-    syncButtons();
-    mobileQuery.addEventListener('change', syncButtons);
-};
-
 const readCookieConsent = () => {
     const consentCookie = document.cookie
         .split('; ')
@@ -154,7 +117,6 @@ const showCookieConsent = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     setupMobileMenu();
-    setupMobileVideoPlayButtons();
 
     document.querySelector('.theme-toggle')?.addEventListener('click', () => {
         const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
