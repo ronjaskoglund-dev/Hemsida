@@ -3,6 +3,51 @@
     display: none;
 }
 
+@media (max-width: 680px) {
+    .projects-page .video-grid,
+    .projects-page .video-grid--collaborations {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .projects-page .video-info {
+        display: block;
+        min-height: 38px;
+        padding: 7px 6px 8px;
+    }
+
+    .projects-page .video-rank,
+    .projects-page .video-info p {
+        display: none;
+    }
+
+    .projects-page .video-info h4 {
+        overflow: hidden;
+        margin: 0;
+        font-size: 0.7rem;
+        line-height: 1.15;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .projects-page .views-badge {
+        top: 5px;
+        right: 5px;
+        padding: 4px 5px;
+        font-size: 0.43rem;
+        letter-spacing: 0.25px;
+    }
+
+    .collaborations-page .work-columns {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+    }
+
+    .collaborations-page .work-column {
+        display: contents;
+    }
+}
+
 @media (max-width: 850px) {
     html,
     body {
